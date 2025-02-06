@@ -1,5 +1,6 @@
 import { MainStyled } from "./Main.js";
 import { client } from "../../contentful.js";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useEffect, useState } from "react";
 
 client.getEntry("43jLiGNYJTwQQmVjC7oyXV")
@@ -22,6 +23,7 @@ export const Main = () => {  // Named export
       <div>
         <h1>{data?.fields.title}</h1>
         <img src={"https:" + data?.fields.image.fields.file.url} />
+        {documentToReactComponents(data?.fields.body)}
       </div>
     </MainStyled>
   );
